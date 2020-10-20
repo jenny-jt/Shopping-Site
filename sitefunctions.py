@@ -75,13 +75,16 @@ def add_to_cart(melon_id):
     page and display a confirmation message: 'Melon successfully added to
     cart'."""
 
-    cart = session.setdefault("cart", {})
+    cart = session.setdefault("cart", {}) #will actually modify session and create {} if 'cart' not found
 
-    # cart = session.get('cart', {})  is this the same as above
+    # cart = session.get('cart', {})  will return a dictionary
     
     cart[melon_id] = cart.get(melon_id, 0) + 1
+    
 
-    flash('Melon successfully added')
+    flash('Melon successfully added') #automatically update session
+    print(session['cart'])
+
     return redirect("/cart")
 
 
